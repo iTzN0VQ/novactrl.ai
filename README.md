@@ -1,1 +1,1 @@
-Rizvan Fazli · rizvanfazli8@gmail.com · NovaCTRL.ai
+novactrl.ai: Diamond System Intelligence.
