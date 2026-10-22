@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electrical Diagnostics — Cheat Sheet · NovaCTRL</title>
+  <meta name="description" content="HVAC electrical diagnostics cheat sheet: capacitor under-load formula, hot surface ignitor identification by resistance." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark">N</span>
+          <span class="brand-name">Nova<span class="ctrl">CTRL</span></span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../tech-tips.html">Tech Tips</a></li>
+          <li><a href="../cheat-sheets.html" class="active">Cheat Sheets</a></li>
+          <li><a href="../ai-workflows.html">AI Workflows</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="post-header">
+        <div class="container-narrow">
+          <div class="post-meta">
+            <span class="tag mono">CHEAT SHEET · 01 / 06</span>
+          </div>
+          <h1>Electrical Diagnostics</h1>
+          <p class="subtitle">A lying meter sends you to the wrong part. Measure under load. Trust the numbers.</p>
+        </div>
+      </header>
+
+      <div class="container-narrow">
+        <div class="post-content">
+
+          <h2>Capacitor Under Load Test</h2>
+          <p class="dim mono" style="margin-top: -8px;">Dual-clamp method</p>
+
+          <div class="callout">
+            <strong>MFD = (Amps × 2652) ÷ Volts</strong><br/>
+            Reading at ±6% of nameplate = healthy.<br/>
+            Anything outside that range — replace it.
+          </div>
+
+          <p>Tests the capacitor under <em>real load</em>, not at rest, so it catches weak caps an ohmmeter won't flag. See the <a href="../posts/capacitor-under-load.html">full write-up with worked example</a>.</p>
+
+          <h2>Ignitor Identification by Resistance</h2>
+          <p class="dim mono" style="margin-top: -8px;">Hot surface ignitors</p>
+
+          <p>You can identify the ignitor type with your meter on ohms before you order the wrong part. Resistance reading tells you the voltage class.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Resistance</th><th>Type</th><th>Voltage</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="mono">40 – 75 Ω</td><td>Silicon Carbide</td><td>120 VAC</td></tr>
+                <tr><td class="mono">10 – 30 Ω</td><td>Silicon Nitride</td><td>120 VAC</td></tr>
+                <tr><td class="mono">~ 40 Ω</td><td>Mini-igniter</td><td>80 VAC</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <strong>Field rule.</strong> Verify with the furnace board's spec — but the resistance reading gets you 90% of the way to the right part on the first truck stop.
+          </div>
+
+          <p class="dim mono" style="margin-top: 48px; font-size: 0.9rem;">— Page 1 of the <a href="../downloads/field-tech-survival-kit-lattc-2026.pdf" download>Field Tech Survival Kit</a>.</p>
+
+        </div>
+
+        <div style="padding-bottom: 80px;">
+          <a href="../cheat-sheets.html" class="btn btn-ghost">← All cheat sheets</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div class="mono">© <span id="year">2026</span> NovaCTRL · Rizvan Fazli · built in the field</div>
+        <div class="footer-links">
+          <a href="../tech-tips.html">Tips</a>
+        <a href="../mitsubishi-tips.html">Mitsubishi</a>
+          <a href="../cheat-sheets.html">Sheets</a>
+          <a href="../ai-workflows.html">Workflows</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

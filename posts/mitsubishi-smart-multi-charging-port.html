@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Multi — the right charging port · NovaCTRL</title>
+  <meta name="description" content="Mitsubishi Smart Multi: three service ports, one charging port (the reversing-valve center port). Charge by weight to the DSB number — test run via DIP switches or maintenance tool." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .photo-figure { margin: 28px 0; }
+    .photo-figure img { width: 100%; height: auto; display: block; border-radius: var(--r-md); border: 1px solid var(--hairline); }
+    .photo-figure figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); margin-top: 10px; letter-spacing: 0.02em; line-height: 1.5; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 28px 0; }
+    .photo-grid figure { margin: 0; }
+    .photo-grid img { width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--hairline); display: block; }
+    .photo-grid figcaption { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-faint); margin-top: 8px; letter-spacing: 0.02em; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">Nova<span class="ctrl">CTRL</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../tech-tips.html">Tech Tips</a></li>
+        <li><a href="../cheat-sheets.html">Cheat Sheets</a></li>
+        <li><a href="../ai-workflows.html">AI Workflows</a></li>
+        <li><a href="../tools/gauge.html">Gauge Tool</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <section class="section section--dark" style="padding: 140px 24px 40px;">
+        <div class="container-narrow">
+          <div class="post-meta">
+            <span class="tag mono">Mitsubishi — Smart Multi</span>
+            <span>May 18, 2026</span>
+            <span>3 min read</span>
+          </div>
+          <h1 class="display-hero" data-split style="font-size: clamp(2rem, 4.5vw, 3rem);">Smart Multi — the right charging port</h1>
+          <p class="lede" style="margin-top: 20px;">There are three service ports on a Mitsubishi Smart Multi. Only one is built to take charge — and you charge by weight per the DSB. Period.</p>
+        </div>
+      </section>
+
+      <section class="section section--mid" style="padding: 48px 24px 100px;">
+        <div class="container-narrow">
+          <div class="post-content">
+
+          <figure class="photo-figure">
+            <img src="../assets/mitsubishi/smart-multi-with-tools.jpg" alt="Mitsubishi Smart Multi outdoor unit open at the service panel, manifold gauges hooked to the center reversing-valve port, scale and refrigerant tank staged on the pad." loading="lazy" />
+            <figcaption>Smart Multi — manifold on the center port (reversing valve). Bag and scale staged on the pad. This is the charging position.</figcaption>
+          </figure>
+
+          <h2>What you're looking at</h2>
+
+          <p>Mitsubishi's Smart Multi outdoor unit exposes three Schrader-style service ports inside the right-hand service panel — and at a glance they look interchangeable. They're not.</p>
+
+          <ul>
+            <li><strong>Suction (low side) service valve port</strong> — on the stop-valve body for the larger gas line. For <em>service access</em>: low-side gauge readings, recovery, pressure tests. Not the charging port.</li>
+            <li><strong>Liquid line service valve port</strong> — on the stop-valve body for the smaller liquid line. Same role: <em>service access</em> for high-side gauge readings, recovery, pressure tests. Not the charging port.</li>
+            <li><strong>Center port on the reversing valve</strong> — deeper in the chassis, on the brass 4-way body. This is the <strong>intended charging port</strong>. Charge here. Every time.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>The field rule.</strong> On a Smart Multi, always charge through the center port on the reversing valve. The two stop-valve service ports are for reading and recovery, not for adding refrigerant.
+          </div>
+
+          <h2>Why the reversing valve port</h2>
+
+          <p>The Smart Multi is a multi-branch system: one outdoor condenser, multiple indoor heads, EEVs at every branch, an internal accumulator, and a reversing valve that flips the entire circuit between heat and cool. Where you introduce charge into that loop matters.</p>
+
+          <ul>
+            <li><strong>Refrigerant distribution.</strong> The reversing-valve port sits on the common refrigerant path between the compressor and the indoor branches. Charge added here gets distributed by the system's own logic — through the accumulator, past the EEVs, into the branches that are actually calling. Charge through a stop-valve service port and you're injecting into one leg of the circuit, which a multi-branch system isn't expecting.</li>
+            <li><strong>Gauge readings stay honest.</strong> When you charge through the same port you're reading from, the act of pushing refrigerant into the system makes that line's number jump every time you crack the bottle. Center port keeps your low-side and liquid-line readings clean while you charge — they measure what the system actually sees, not what you just shoved at it.</li>
+            <li><strong>EEV behavior.</strong> Inverter Mitsubishi systems modulate EEVs based on what they sense at the indoor coils. Dump liquid charge straight at one EEV through a stop-valve port and you can get it to hunt, throw an L5 / U2 / U3, or run the compressor on a wet suction line until it stops.</li>
+            <li><strong>It's what the IOM says.</strong> Mitsubishi's Smart Multi service manual specifies the reversing-valve service port as the charging port. The two stop-valve ports are documented as pressure-check / recovery points. If a warranty claim ever comes back at you, the IOM is the document that wins.</li>
+          </ul>
+
+          <h2>The procedure</h2>
+
+          <ol>
+            <li><strong>Get the DSB charge number.</strong> Run the install through Diamond System Builder for the actual outdoor unit + indoor combination + line-set lengths. The DSB number is the charge for this system — that's the number you're putting in. Not a nameplate estimate, not an SH/SC chase — the DSB.</li>
+            <li><strong>Recover, evacuate, decay-test.</strong> Pull below 500 microns through both stop-valve service ports (cores out, standalone micron gauge — see <a href="pulling-a-vacuum.html">the vacuum post</a>). Hold the decay.</li>
+            <li><strong>Connect the manifold to the center port</strong> on the reversing valve. Yellow charge hose to the bottle on the scale.</li>
+            <li><strong>Put the outdoor unit in test run mode</strong> — DIP switches on the inverter board (refer to the model-specific service manual for the switch positions), or use the Mitsubishi maintenance tool to force test mode. Don't try to thermostat-call your way into it; the outdoor doesn't always cooperate.</li>
+            <li><strong>Charge by weight to the DSB number.</strong> Stop when the scale reads the DSB number. Do not trim by superheat or subcool — Mitsubishi spec on Smart Multi is charge by weight, full stop. SH/SC at the indoor units is for verifying the system is healthy after the charge is in, not for adjusting the charge.</li>
+            <li><strong>Cap and torque.</strong> Reversing-valve Schrader cap goes back on with the rubber seal — torque to spec. Same for both stop-valve service-port caps.</li>
+          </ol>
+
+          <h2>The mistakes I see in the field</h2>
+
+          <p><strong>Mistake 1: charging through the stop-valve service port.</strong> Tech rolls up, opens the panel, sees the first port — the stop-valve service port right there in front — and hooks the manifold there. It's the obvious one. It's also the wrong one for charging.</p>
+
+          <p>Symptoms when you've charged the wrong port on a Smart Multi:</p>
+
+          <ul>
+            <li>Pressure reading bouncing 20-40 PSI every time you crack the charging valve.</li>
+            <li>Indoor unit readings that won't stabilize even after 30 min.</li>
+            <li>EEV hunting or check codes showing up an hour into the install.</li>
+            <li>System keeps reading low on charge even after you've added the full DSB amount — because you're stuffing it into the wrong place and it can't get past the EEV closest to the port.</li>
+          </ul>
+
+          <p>Move the manifold to the center port, finish charging from there to the DSB number, and the system settles in about 10 minutes.</p>
+
+          <p><strong>Mistake 2: trimming the charge by superheat or subcool.</strong> This isn't a residential split. The DSB number IS the charge. If your SH/SC is off after charging by weight to DSB, the answer is not "add or recover a few ounces." The answer is: find the actual problem — line set length wrong in DSB, wrong head sizes selected, non-condensables, a leak, a stuck EEV. Mitsubishi's commissioning sequence is by weight. Trim chasers create overcharged or undercharged Smart Multis that fail in the second cooling season.</p>
+
+          <p><strong>Mistake 3: relying on thermostat call for test run.</strong> The outdoor unit won't always commit to compressor speed from a thermostat call alone, especially on partial loads or low ambient. Get into test run mode properly — DIP switches on the inverter board or the maintenance tool — so the compressor stays at a known steady state while you're working.</p>
+
+          <div class="photo-grid">
+            <figure>
+              <img src="../assets/mitsubishi/smart-multi-overall.jpg" alt="Smart Multi outdoor unit with service panel removed — gauge manifold hung on the unit screen, hoses running to the center reversing-valve port and the recovery hose to a port on the stop-valve side." loading="lazy" />
+              <figcaption>Full unit — service panel off. Gauges on the center port.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/mitsubishi/smart-multi-piping-overview.jpg" alt="Inside the service panel — copper piping manifold, brass reversing valve (Sanhua/SAGinoMIYA STF-H07U31) at top center, accumulator below, EEVs and check valves at the bottom. R-410A label visible on the lower piping cradle." loading="lazy" />
+              <figcaption>The brass 4-way valve at top. Center Schrader port is on the body of this valve.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/mitsubishi/smart-multi-charging-port-detail.jpg" alt="Close-up — manifold hose with brass Schrader fitting connected to the center service port on the reversing-valve body, copper piping behind it." loading="lazy" />
+              <figcaption>The center port — manifold connected. Charge here.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/mitsubishi/smart-multi-with-tools.jpg" alt="Wide shot — Mitsubishi Smart Multi outdoor with electric panel open, vacuum pump in tool bag on the pad, refrigerant tank on a scale, manifold gauges hung on the unit." loading="lazy" />
+              <figcaption>The setup — pump, scale, tank, gauges. Center port wins.</figcaption>
+            </figure>
+          <

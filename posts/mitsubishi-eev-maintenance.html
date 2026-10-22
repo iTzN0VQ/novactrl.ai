@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EEV maintenance on ported Mitsubishi units · NovaCTRL</title>
+  <meta name="description" content="Preventive maintenance on the EEV manifold of Mitsubishi ported units — pull the solenoid, Scotch-Brite the valve body, reinstall. Prevents stuck-step faults before they ground the system." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .photo-figure { margin: 28px 0; }
+    .photo-figure img { width: 100%; height: auto; display: block; border-radius: var(--r-md); border: 1px solid var(--hairline); }
+    .photo-figure figcaption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); margin-top: 10px; letter-spacing: 0.02em; line-height: 1.5; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 28px 0; }
+    .photo-grid figure { margin: 0; }
+    .photo-grid img { width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--hairline); display: block; }
+    .photo-grid figcaption { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-faint); margin-top: 8px; letter-spacing: 0.02em; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">Nova<span class="ctrl">CTRL</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../tech-tips.html" class="active">Tech Tips</a></li>
+        <li><a href="../cheat-sheets.html">Cheat Sheets</a></li>
+        <li><a href="../ai-workflows.html">AI Workflows</a></li>
+        <li><a href="../tools/gauge.html">Gauge Tool</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <section class="section section--dark" style="padding: 140px 24px 40px;">
+        <div class="container-narrow">
+          <div class="post-meta">
+            <span class="tag mono">Mitsubishi — Maintenance</span>
+            <span>May 18, 2026</span>
+            <span>3 min read</span>
+          </div>
+          <h1 class="display-hero" data-split style="font-size: clamp(2rem, 4.5vw, 3rem);">EEV maintenance on ported units</h1>
+          <p class="lede" style="margin-top: 20px;">Pull the solenoid off. Scotch-Brite the valve body. Slide the solenoid back on. That's the whole job — and on a ported Mitsubishi it saves a fault code in year three or four.</p>
+        </div>
+      </section>
+
+      <section class="section section--mid" style="padding: 48px 24px 100px;">
+        <div class="container-narrow">
+          <div class="post-content">
+
+          <figure class="photo-figure">
+            <img src="../assets/mitsubishi/eev-coil-off.jpg" alt="Close-up of an EEV on a Mitsubishi ported unit — the black plastic solenoid pulled to the side, exposing the brass-and-stainless valve body. Wiring harness visible, copper piping around it. Other EEVs in the manifold below have their solenoids still installed." loading="lazy" />
+            <figcaption>Solenoid pulled off the valve body. This is the working position.</figcaption>
+          </figure>
+
+          <h2>Why it matters</h2>
+
+          <p>Mitsubishi's ported outdoor units — Smart Multi, City Multi R2 with BC controllers, hybrid VRF branch boxes — distribute refrigerant to multiple indoor heads via a manifold of <strong>electronic expansion valves</strong>. One EEV per branch. Each one is a brass-and-stainless valve body with a needle inside, driven by a solenoid that slides onto the body from outside the refrigerant circuit. Magnetic coupling through the body wall — no shaft seal, no leak path.</p>
+
+          <p>That design has one weakness: <em>the magnetic coupling depends on the solenoid-to-body interface being clean.</em> Outdoor service builds up oxidation, dust, and oil film on the valve body. The solenoid still moves. The needle? Less reliably. Step counts drift. Eventually you get an LD, L5, U2, or U3 on a system that "was fine yesterday." It's not a failed EEV — it's a dirty interface.</p>
+
+          <h2>The procedure</h2>
+
+          <ol>
+            <li><strong>Power down the outdoor at the disconnect.</strong> Lock out / tag out. You don't want anyone calling the system while you've got solenoids off.</li>
+            <li><strong>Pull the solenoid straight up.</strong> There's a retainer clip that flexes past the body's lip. Don't yank sideways — you'll crack the housing. Straight-up wiggle.</li>
+            <li><strong>Inspect the valve body.</strong> The brass-and-stainless cylinder. Looking for tarnish, oxidation, residue, anything that isn't bare metal.</li>
+            <li><strong>Hit it with a green Scotch-Brite</strong> (3M general-purpose, non-metallic). Light pressure, a few passes around the body until it's bright. <em>Do not use steel wool, sandpaper, or a wire brush</em> — those leave magnetic particles that the solenoid magnets pick up. You'd be creating the exact problem you're trying to prevent.</li>
+            <li><strong>Wipe with a clean rag.</strong> Get any fibers off. Body should be bright and dry.</li>
+            <li><strong>Slide the solenoid back on.</strong> Straight down onto the body until you feel/hear the retainer snap. Same orientation it came off — some have a keyway, don't force it.</li>
+            <li><strong>Repeat for every EEV in the manifold.</strong> 4-8 of them on most ported units. Knock them all out while the panel is open.</li>
+            <li><strong>Power back up, run test mode</strong> (DIP switches on the inverter board or the maintenance tool — see <a href="mitsubishi-smart-multi-charging-port.html">the Smart Multi charging-port post</a>). Verify all branches are calling. Log the EEV step counts in service mode if you can — that's your baseline for next year.</li>
+          </ol>
+
+          <div class="photo-grid">
+            <figure>
+              <img src="../assets/mitsubishi/eev-coil-off.jpg" alt="EEV on ported unit with solenoid pulled to the side, valve body exposed." loading="lazy" />
+              <figcaption>Solenoid off. Body exposed.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/mitsubishi/eev-coil-hand.jpg" alt="Hand holding the removed EEV solenoid — black plastic donut with the internal magnet visible. The valve body sits to the right on the manifold." loading="lazy" />
+              <figcaption>The solenoid in hand. Retainer clip and internal magnet visible.</figcaption>
+            </figure>
+            <figure>
+              <img src="../assets/mitsubishi/eev-cleaning.jpg" alt="Hand holding a green Scotch-Brite scouring pad next to the EEV manifold on a Mitsubishi ported unit. Multiple EEVs visible." loading="lazy" />
+              <figcaption>Green Scotch-Brite. Every EEV in the manifold gets this.</figcaption>
+            </figure>
+          </div>
+
+          <h2>What NOT to do</h2>
+
+          <ul>
+            <li><strong>No steel wool, sandpaper, or wire brushes.</strong> Steel particles get magnetized by the solenoid. You've just put metal shavings on a moving stepper. The valve will fail faster than it would have dirty.</li>
+            <li><strong>No solvents on the body.</strong> Anything that could seep past the body wall is contaminating the refrigerant circuit. Dry mechanical only.</li>
+            <li><strong>Don't pull the solenoid with the system energized and calling.</strong> The driver sends step pulses against an absent body. Best case nothing happens, worst case you damage the inverter board.</li>
+            <li><strong>Don't force the solenoid back on rotated 90° off.</strong> Some have a keyway. Look at how it came off.</li>
+          </ul>
+
+          <h2>When to do it</h2>
+
+          <ul>
+            <li><strong>Coastal install</strong> — every spring before first cooling call. Salt air is brutal on the bodies.</li>
+            <li><strong>Industrial / roadside</strong> — annually. Diesel and tire dust film up fast.</li>
+            <li><strong>Residential / sheltered</strong> — every 2 years, or whenever you have the panel open and see visible film.</li>
+            <li><strong>After any LD / L5 / U2 / U3 code</strong> that resolved on a step-count reset — clean every interface before you hand the system back.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Field rule.</strong> If you have the panel open on a ported Mitsubishi for any reason, the EEV manifold is right there. Twenty extra minutes with a green Scotch-Brite prevents the warranty truck roll in year three or four.
+          </div>
+
+          </div>
+          <div style="padding-top: 24px;">
+            <a href="../mitsubishi-tips.html" class="btn btn-ghost">All Mitsubishi tips</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <div>© <span id="year">2026</span> NovaCTRL · Rizvan Fazli</div>
+      <div class="footer-links">
+        <a href="../tech-tips.html">Tips</a>
+        <a href="../mitsubishi-tips.html">Mitsubishi</a>
+        <a href="../cheat-sheets.html">Sheets</a>
+        <a href="../ai-workflows.html">Workflows</a>
+        <a href="../tools/gauge.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.NOVABOT_WORKER_URL = 'https://novabot.demonkiller2003.workers.dev';
+  </script>
+  <script src="../js/cinema.js" defer></script>
+  <script src="../js/novabot.js" defer></script>
+</body>
+</html>

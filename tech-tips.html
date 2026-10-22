@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Tips — NovaCTRL</title>
+  <meta name="description" content="Practical field tips for HVAC technicians — vacuum procedures, electrical diagnostics, controls quirks, inverter systems." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">Nova<span class="ctrl">CTRL</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tech-tips.html" class="active">Tech Tips</a></li>
+        <li><a href="cheat-sheets.html">Cheat Sheets</a></li>
+        <li><a href="ai-workflows.html">AI Workflows</a></li>
+        <li><a href="tools/gauge.html">Gauge Tool</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section section--dark" style="padding: 140px 24px 60px;">
+      <div class="container">
+        <span class="eyebrow">// Tech Tips</span>
+        <h1 class="display-hero" data-split>Pulled from the truck.</h1>
+        <p class="lede" style="margin-top: 20px;">Short, practical, field-tested. What I'd want my apprentice to read on the drive in.</p>
+      </div>
+    </section>
+
+    <section class="scene scene--mid" style="min-height: auto; padding: 60px 24px 60px;">
+      <div class="scene__inner">
+        <span class="eyebrow">// Categories</span>
+        <h2 class="section-heading" style="margin-top: 12px;">By topic.</h2>
+        <div class="card-grid" style="margin-top: 40px;">
+          <article class="card" style="border-left: 3px solid var(--accent);">
+            <span class="card-tag">Mitsubishi Tips</span>
+            <h3><a href="mitsubishi-tips.html">Mitsubishi Electric — Smart Multi, City Multi, M-Series</a></h3>
+            <p>Field tips on Mitsubishi ported units. Charging procedures, service ports, EEV maintenance, M-NET, error codes. Written by a Mitsubishi-certified lead tech.</p>
+            <div class="card-meta"><span>2 posts &amp; growing</span><span>Browse →</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--mid" style="min-height: auto; padding: 30px 24px 120px;">
+      <div class="scene__inner">
+        <span class="eyebrow">// General posts</span>
+        <h2 class="section-heading" style="margin-top: 12px;">Procedures &amp; primers.</h2>
+        <div class="card-grid" style="margin-top: 40px;">
+          <article class="card">
+            <span class="card-tag">HVAC · Vacuum</span>
+            <h3><a href="posts/pulling-a-vacuum.html">Pulling a vacuum — the right way</a></h3>
+            <p>Most techs pull through the SMAN with Schrader cores in. The pro method: core removal, standalone micron gauge, real decay test.</p>
+            <div class="card-meta"><span>May 17, 2026</span><span>4 min read</span></div>
+          </article>
+          <article class="card">
+            <span class="card-tag">HVAC · Primer</span>
+            <h3><a href="posts/vrf-vs-vrv.html">VRF vs. VRV — what's the difference?</a></h3>
+            <p>Same technology, different name. Why Daikin says "VRV," Mitsubishi/LG/Samsung/Carrier say "VRF," and what it means for the system on the wall.</p>
+            <div class="card-meta"><span>May 17, 2026</span><span>2 min read</span></div>
+          </article>
+          <article class="card">
+            <span class="card-tag">Electrical</span>
+            <h3><a href="posts/capacitor-under-load.html">Capacitor under-load test</a></h3>
+            <p>The ohmmeter on a weak capacitor lies. Use the dual-clamp method — Amps × 2652 ÷ Volts — and catch the weak ones before the customer does.</p>
+            <div class="card-meta"><span>May 17, 2026</span><span>3 min read</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <div>© <span id="year">2026</span> NovaCTRL · Rizvan Fazli</div>
+      <div class="footer-links">
+        <a href="tech-tips.html">Tips</a>
+        <a href="mitsubishi-tips.html">Mitsubishi</a>
+        <a href="cheat-sheets.html">Sheets</a>
+        <a href="ai-workflows.html">Workflows</a>
+        <a href="tools/gauge.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.NOVABOT_WORKER_URL = 'https://novabot.demonkiller2003.workers.dev';
+  </script>
+  <script src="js/cinema.js" defer></script>
+  <script src="js/novabot.js" defer></script>
+</body>
+</html>

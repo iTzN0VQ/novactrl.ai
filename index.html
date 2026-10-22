@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaCTRL — AI × HVACR. Built in the field.</title>
+  <meta name="description" content="NovaCTRL is where Rizvan Fazli open-sources AI × HVACR workflows, cheat sheets, and field tips. Built in the field. Sharpened by AI." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">Nova<span class="ctrl">CTRL</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="tech-tips.html">Tech Tips</a></li>
+        <li><a href="cheat-sheets.html">Cheat Sheets</a></li>
+        <li><a href="ai-workflows.html">AI Workflows</a></li>
+        <li><a href="tools/gauge.html">Gauge Tool</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="section section--hero section--dark">
+      <div class="cinema-3d" id="nova-3d" aria-hidden="true"></div>
+      <div class="container">
+        <span class="eyebrow">// AI × HVACR · built in the field</span>
+        <h1 class="display-hero" data-split>Built in the field. Sharpened by AI.</h1>
+        <p class="lede">NovaCTRL open-sourced AI workflows, cheat sheets, and field tips. Inverter-driven systems, communicating controls, AI-assisted diagnostics — this is Monday's service call, not the future.</p>
+        <div class="hero-cta">
+          <a href="tools/gauge.html" class="btn btn-primary">Try the Gauge Diagnostic</a>
+          <a href="ai-workflows.html" class="btn btn-ghost">Explore the workflows</a>
+        </div>
+        <div class="hero-meta">
+          <span><span class="dot"></span>Nova Claw online</span>
+          <span>46 brands · 256 codes loaded</span>
+          <span>v1 · 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--mid" style="min-height:auto; padding: 0;">
+      <div class="scene__inner">
+        <div class="stats-strip">
+          <div class="stat-cell"><div class="stat-number" data-target="46">46</div><div class="stat-label">HVAC brands</div></div>
+          <div class="stat-cell"><div class="stat-number" data-target="256">256</div><div class="stat-label">Error codes</div></div>
+          <div class="stat-cell"><div class="stat-number" data-target="16">16</div><div class="stat-label">Refrigerants</div></div>
+          <div class="stat-cell"><div class="stat-number" data-target="3">3</div><div class="stat-label">Open-source tools</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--dark">
+      <div class="scene__inner">
+        <span class="eyebrow">// What's inside</span>
+        <h2 class="section-heading" data-split>Three categories. All field-tested.</h2>
+        <p class="lede" style="margin-top: 22px;">Tools and references aimed at saving you a parts run, a call-back, or a callout fee.</p>
+        <div class="feature-row" style="margin-top: 64px;">
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Tech Tips</h3>
+            <p>Short, practical posts. Inverter quirks, vacuum procedures, the gotchas that aren't in the install manual.</p>
+            <a href="tech-tips.html" class="link-cta">Read the tips</a>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📋</div>
+            <h3>Cheat Sheets</h3>
+            <p>One-page references for the field. Tech support hotlines, flare torque specs, duct sizing.</p>
+            <a href="cheat-sheets.html" class="link-cta">Browse sheets</a>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Workflows</h3>
+            <p>Claude skills, agentic automations, and tools I actually run on jobs. Open-sourced on GitHub.</p>
+            <a href="ai-workflows.html" class="link-cta">See the skills</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image product showcase -->
+    <section class="scene scene--dark">
+      <div class="scene__inner">
+        <span class="eyebrow">// In the field</span>
+        <h2 class="section-heading" data-split>Real systems. Real diagnostics.</h2>
+        <p class="lede" style="margin-top: 22px;">The tools and references on this site come from real callouts.</p>
+        <div class="product-grid">
+          <a class="product-card-image" href="ai-workflows.html">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Glowing PCB — inverter control board" loading="lazy" />
+            <div class="product-card-overlay">
+              <span class="product-card-tag">Inverter PCB</span>
+              <h3>Communicating boards</h3>
+              <p>Inverter-driven minisplits. Onboard logic, fault codes, comm buses.</p>
+            </div>
+          </a>
+          <a class="product-card-image" href="tools/gauge.html">
+            <img src="assets/pt-chart.svg" alt="Pressure-temperature chart with R-410A, R-454B, R-32 curves" loading="lazy" style="filter: none; object-fit: cover;" />
+            <div class="product-card-overlay">
+              <span class="product-card-tag">PT charts</span>
+              <h3>Pressure → temp</h3>
+              <p>16 refrigerants. The verdict comes from the curves.</p>
+            </div>
+          </a>
+          <a class="product-card-image" href="tech-tips.html">
+            <img src="https://images.unsplash.com/photo-1584774354932-62ceb99e6053?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Copper tubing" loading="lazy" />
+            <div class="product-card-overlay">
+              <span class="product-card-tag">Line set</span>
+              <h3>Brazing &amp; flares</h3>
+              <p>Mitsubishi torque specs. Pull a clean vacuum.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--mid">
+      <div class="scene__inner">
+        <div class="float-card">
+          <span class="eyebrow">// Tool · Live · Open source</span>
+          <h2 class="tile-heading">Gauge Diagnostic</h2>
+          <p class="caption">Enter suction and liquid line pressures plus suction and liquid line temps. Get saturation temps, superheat, subcooling, condenser approach, air ΔT — and a verdict with field-tested causes and fixes. 16 refrigerants. Runs entirely in your browser.</p>
+          <div class="hero-cta">
+            <a href="tools/gauge.html" class="btn btn-primary">Open the tool</a>
+            <a href="https://github.com/iTzN0VQ/gauge-diagnostic" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--dark">
+      <div class="scene__inner">
+        <span class="eyebrow">// Latest from the truck</span>
+        <h2 class="section-heading">Pulled from the field.</h2>
+        <p class="lede" style="margin-top: 22px;">Real procedures, written by a working tech.</p>
+        <div class="card-grid" style="margin-top: 56px;">
+          <article class="card">
+            <span class="card-tag">HVAC · Vacuum</span>
+            <h3><a href="posts/pulling-a-vacuum.html">Pulling a vacuum — the right way</a></h3>
+            <p>Most techs pull through the SMAN with Schrader cores in. The pro method: core removal, standalone micron gauge, real decay test.</p>
+            <div class="card-meta"><span>4 min read</span><span>Procedure</span></div>
+          </article>
+          <article class="card">
+            <span class="card-tag">HVAC · Primer</span>
+            <h3><a href="posts/vrf-vs-vrv.html">VRF vs. VRV — what's the difference?</a></h3>
+            <p>Same technology, different name. Why Daikin says "VRV" and everyone else says "VRF."</p>
+            <div class="card-meta"><span>2 min read</span><span>Primer</span></div>
+          </article>
+          <article class="card">
+            <span class="card-tag">Electrical</span>
+            <h3><a href="posts/capacitor-under-load.html">Capacitor under-load test</a></h3>
+            <p>An ohmmeter on a weak cap lies. The dual-clamp method catches them before the homeowner does.</p>
+            <div class="card-meta"><span>3 min read</span><span>Electrical</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--mid-2">
+      <div class="scene__inner" style="text-align: center;">
+        <span class="eyebrow">// The mission</span>
+        <h2 class="section-heading" data-split>Built for technicians, by technicians.</h2>
+        <p class="lede" style="margin: 24px auto 0; max-width: 680px;">NovaCTRL — open-sourced AI × HVACR workflows.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <div>© <span id="year">2026</span> NovaCTRL · Rizvan Fazli</div>
+      <div class="footer-links">
+        <a href="tech-tips.html">Tips</a>
+        <a href="mitsubishi-tips.html">Mitsubishi</a>
+        <a href="cheat-sheets.html">Sheets</a>
+        <a href="ai-workflows.html">Workflows</a>
+        <a href="tools/gauge.html">Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.NOVABOT_WORKER_URL = 'https://novabot.demonkiller2003.workers.dev';
+    (function() {
+      const els = document.querySelectorAll('.stat-number[data-target]');
+      function animate(el) {
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1400, start = performance.now();
+        function tick(now) {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.4 });
+        els.forEach(el => io.observe(el));
+      } else els.forEach(animate);
+    })();
+  </script>
+  <script src="js/cinema.js" defer></script>
+  <script src="js/novabot.js" defer></script>
+</body>
+</html>
