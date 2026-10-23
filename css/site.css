@@ -1,6 +1,7 @@
 /* novactrl.ai
-   Product page for Diamond System Intelligence, in the manner of an Apple product page.
-   Layout: a centered statement hero; a scroll-lit statement;
+   Landing page plus the Diamond System Intelligence product page, in the manner of Apple product pages.
+   Landing: a centered statement hero and three rows (hardware, software, AI / SI skills).
+   DSI page: a centered statement hero; a scroll-lit statement;
    "How it works" with a sticky title beside three steps and a progress line that fills as you
    scroll; a specs grid; the checklist table; the install block; a short
    NovaCTRL overview; a one-line footer. One 980px column, 640px text measure, system type.
@@ -367,6 +368,26 @@ td:last-child { color: var(--fg-2); }
   font-size: 1.3125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+}
+
+/* Landing page: three rows for what NovaCTRL makes */
+.display.wide { max-width: 18ch; }
+.lines-wrap { padding-block: clamp(24px, 4vw, 48px) clamp(72px, 11vw, 150px); }
+.lines { list-style: none; padding-block: 0; border-top: 1px solid var(--hair); }
+.line {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 8px clamp(24px, 5vw, 64px);
+  padding-block: clamp(24px, 3.5vw, 36px);
+  border-bottom: 1px solid var(--hair);
+}
+.line h2 { font-size: clamp(1.5rem, 3.2vw, 2.25rem); }
+.line > div { min-width: 0; }
+.line p { color: var(--fg-2); max-width: 36rem; }
+.line .status { margin-top: 8px; font-weight: 600; color: var(--fg); }
+.line .status .more { min-height: 0; margin-left: 6px; font-weight: 400; }
+@media (max-width: 640px) {
+  .line { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Footer */
