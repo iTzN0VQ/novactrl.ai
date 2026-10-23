@@ -2,19 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="color-scheme" content="light dark">
   <title>Diamond System Intelligence</title>
-  <meta name="description" content="Diamond System Intelligence. Source on GitHub.">
-  <link rel="icon" href="data:,">
+  <meta name="description" content="A Claude skill that turns a phone photo of a Mitsubishi Field Survey Checklist into a finished Diamond System Builder project: a saved .dsbx and a PDF submittal. Open source, from NovaCTRL.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <main>
-    <h1>Diamond System Intelligence</h1>
-    <a class="link" href="https://github.com/iTzN0VQ/dsb-builder" rel="noopener noreferrer">github.com/iTzN0VQ/dsb-builder</a>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="#top">NovaCTRL</a>
+      <nav class="nav-links" aria-label="Page">
+        <a href="#how">How it works</a>
+        <a href="#specs">Specs</a>
+        <a href="https://github.com/iTzN0VQ/dsb-builder" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <h1>Diamond System Intelligence</h1>
+        <p class="display">Photo in. Submittal out.</p>
+        <p class="intro muted">A Claude skill that turns a phone photo of a filled-out Mitsubishi Field Survey Checklist into a finished Diamond System Builder project: a saved .dsbx and an exported PDF submittal, sent back to the contractor's phone.</p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/iTzN0VQ/dsb-builder" rel="noopener noreferrer">Get it on GitHub</a>
+          <a class="more" href="#how">How it works</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <picture>
+          <source media="(max-width: 735px)" type="image/webp" srcset="assets/img/hero-tall-800.webp 800w, assets/img/hero-tall-1100.webp 1100w" sizes="100vw">
+          <source media="(max-width: 735px)" type="image/jpeg" srcset="assets/img/hero-tall-800.jpg 800w, assets/img/hero-tall-1100.jpg 1100w" sizes="100vw">
+          <source type="image/webp" srcset="assets/img/hero-wide-1200.webp 1200w, assets/img/hero-wide-1600.webp 1600w" sizes="100vw">
+          <img src="assets/img/hero-wide-1200.jpg" srcset="assets/img/hero-wide-1200.jpg 1200w, assets/img/hero-wide-1600.jpg 1600w" sizes="100vw" width="1600" height="900" fetchpriority="high" decoding="async" alt="Mitsubishi Smart Multi outdoor unit with its service panel removed and a digital manifold hung on the fan guard, two hoses running down from it, and the control board and copper piping exposed on the service side">
+        </picture>
+      </figure>
+    </section>
+
+    <section class="statement">
+      <div class="wrap">
+        <p class="lit">
+          <span>One page, filled out at the kitchen table.</span>
+          <span>One photo, dropped in the chat.</span>
+          <span>A submittal that used to wait for a laptop back at the shop.</span>
+          <span>Twenty to thirty minutes saved on every one.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="wrap how-grid">
+        <div class="how-head">
+          <h2>How it works</h2>
+          <p class="intro muted">The form is the spec. The skill builds exactly what is on it and stops if anything is missing.</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="num">1</span>
+            <h3>Fill out the checklist and take a photo.</h3>
+            <p>Two pages, five sections: project info, the outdoor unit, the branch box, the output you want, and up to eight indoor units with their controllers. Snap it with your phone and drop it in the chat with <strong>build the DSB</strong>.</p>
+          </li>
+          <li class="step">
+            <span class="num">2</span>
+            <h3>The skill checks the form, then drives DSB.</h3>
+            <p>Every required field, contradiction-free. If anything is blank or unreadable it tells you exactly what to fix instead of guessing.</p>
+            <p>Then it opens Diamond System Builder on a Windows machine through Claude's computer-use and works through it the way you would: project properties, outdoor unit, branch box, every indoor unit, every controller. The R-454B floor-area gate, M-NET defaults, branch box end caps and per-zone controller routing are handled on the way.</p>
+          </li>
+          <li class="step">
+            <span class="num">3</span>
+            <h3>A .dsbx and a PDF come back.</h3>
+            <p>The project is saved and the PDF submittal exported to the folder the form specifies. The PDF is attached back to the chat, so the contractor opens it on their phone.</p>
+            <p>If DSB reports a design error, the skill stops, names the conflict and waits for a corrected form. Design choices stay with the tech.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="band-wrap">
+      <figure class="wrap">
+        <div class="band">
+          <picture>
+            <source type="image/webp" srcset="assets/img/band-1000.webp 1000w, assets/img/band-1960.webp 1960w" sizes="(min-width: 1024px) 936px, 100vw">
+            <img src="assets/img/band-1000.jpg" srcset="assets/img/band-1000.jpg 1000w, assets/img/band-1960.jpg 1960w" sizes="(min-width: 1024px) 936px, 100vw" width="1960" height="980" loading="lazy" decoding="async" alt="Copper piping and a brass reversing valve inside a Mitsubishi Smart Multi outdoor unit, with wiring harnesses running down the left side">
+          </picture>
+        </div>
+        <figcaption class="caption reveal">A Smart Multi outdoor unit with the service panel off. Systems like this one are what the checklist describes and DSB designs.</figcaption>
+      </figure>
+    </div>
+
+    <section class="specs" id="specs">
+      <div class="wrap">
+        <h2>What it handles</h2>
+        <p class="intro muted measure">Current-generation Mitsubishi residential and light commercial equipment, up to eight indoor units, with the controller logic that is easy to miss when a submittal is rushed.</p>
+        <dl class="spec-grid">
+          <div class="reveal"><dt>Equipment</dt><dd>M-Series single zone, MXZ multi-zone, MXZ-SM Smart Multi and P-Series. Current-generation R-454B models.</dd></div>
+          <div class="reveal"><dt>Indoor units</dt><dd>Up to eight per project: zone, type, capacity, mount height, lineset, number of 90s, vertical rise or drop, floor area and controller for each.</dd></div>
+          <div class="reveal"><dt>Branch boxes</dt><dd>Three-port and five-port, with the run from the outdoor unit, the elbows and the elevation taken from the form. End caps handled.</dd></div>
+          <div class="reveal"><dt>Controllers</dt><dd>PAR-42 wired, MHK2 wireless, kumo cloud, and PAC-445 with a third-party thermostat, routed per zone.</dd></div>
+          <div class="reveal"><dt>Validation</dt><dd>Every required field checked and contradictions flagged before DSB opens. Blank or unreadable means you are told what to fix.</dd></div>
+          <div class="reveal"><dt>Output</dt><dd>A saved .dsbx project and an exported PDF submittal in the folder the form names, with the PDF attached back to the chat.</dd></div>
+          <div class="reveal"><dt>Runs in</dt><dd>Claude Code, Cowork in the Claude desktop app, or any Claude product that supports the SKILL.md format.</dd></div>
+          <div class="reveal"><dt>Needs</dt><dd>A Windows machine with Diamond System Builder installed, and Claude with computer-use access to DSB and File Explorer.</dd></div>
+          <div class="reveal"><dt>Does not</dt><dd>Redesign systems, bypass M-NET, or handle City Multi. City Multi jobs use a different survey sheet.</dd></div>
+          <div class="reveal"><dt>License</dt><dd>MIT. Use it, fork it, improve it.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="form">
+      <div class="wrap">
+        <h2>The Field Survey Checklist</h2>
+        <p class="intro muted measure">Two pages, five sections. Everything DSB needs, in the order DSB asks for it.</p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead>
+              <tr><th scope="col">§</th><th scope="col">Section</th><th scope="col">Fields</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Project info</td><td>Project name, which becomes the save filename; customer; address; date; tech; job number.</td></tr>
+              <tr><td>2</td><td>Outdoor unit</td><td>Family, capacity in kBTU, Hyper-Heat, voltage, phase, elevation, mount, service clearance.</td></tr>
+              <tr><td>3</td><td>Branch box</td><td>No-branch-box checkbox, ports, run from outdoor unit to branch box, number of 90s, elevation.</td></tr>
+              <tr><td>4</td><td>Output</td><td>Save filename and folder, plus checkboxes for the equipment schedule, lineset summary, PDF and email.</td></tr>
+              <tr><td>5</td><td>Indoor units</td><td>Up to eight: zone or room, type, capacity, mount height, lineset, number of 90s, vertical rise or drop, floor area, controller.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="get" id="get">
+      <div class="wrap">
+        <h2>One file. Runs wherever Claude runs skills.</h2>
+        <p class="intro muted measure">DSB Builder is a single SKILL.md with YAML frontmatter. Nothing to compile, nothing to host.</p>
+        <dl class="get-grid">
+          <div class="reveal"><dt>Claude Code</dt><dd>Drop SKILL.md into <code>~/.claude/skills/dsb-builder/</code> or a project-level <code>skills/</code> folder.</dd></div>
+          <div class="reveal"><dt>Cowork</dt><dd>Install it as a personal or workspace skill in the Claude desktop app.</dd></div>
+          <div class="reveal"><dt>Then</dt><dd>Upload the photo and say <strong>build the DSB</strong>, <strong>spin up DSB</strong>, <strong>run the submittal</strong> or <strong>do the worksheet</strong>.</dd></div>
+        </dl>
+        <div class="actions">
+          <a class="btn" href="https://github.com/iTzN0VQ/dsb-builder" rel="noopener noreferrer">Get DSB Builder on GitHub</a>
+          <span class="caption">MIT license · github.com/iTzN0VQ/dsb-builder</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="novactrl">
+      <div class="wrap">
+        <h2>NovaCTRL</h2>
+        <p class="intro muted">Open-sourced AI × HVACR workflows.</p>
+        <p class="measure">NovaCTRL is where Rizvan Fazli, an HVACR technician and Mitsubishi-certified lead tech, publishes the AI workflows he builds and runs on real jobs. Diamond System Intelligence is the first one here.</p>
+        <p class="mission">Built for technicians, by technicians.</p>
+      </div>
+    </section>
   </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <p>© 2026 NovaCTRL · Rizvan Fazli</p>
+      <nav aria-label="Footer">
+        <a href="https://github.com/iTzN0VQ/dsb-builder" rel="noopener noreferrer">DSB Builder on GitHub</a>
+        <a href="https://github.com/iTzN0VQ" rel="noopener noreferrer">github.com/iTzN0VQ</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
