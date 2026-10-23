@@ -1,8 +1,8 @@
 /* novactrl.ai
    Product page for Diamond System Intelligence, in the manner of an Apple product page.
-   Layout: a centered statement hero above a full-bleed field photo; a scroll-lit statement;
+   Layout: a centered statement hero; a scroll-lit statement;
    "How it works" with a sticky title beside three steps and a progress line that fills as you
-   scroll; a contained photo band; a specs grid; the checklist table; the install block; a short
+   scroll; a specs grid; the checklist table; the install block; a short
    NovaCTRL overview; a one-line footer. One 980px column, 640px text measure, system type.
    Animations are opacity, transform and color only, driven by CSS scroll timelines where the
    browser has them and simply absent where it doesn't. */
@@ -78,7 +78,6 @@ body::before {
   background: var(--nav-bg);
 }
 h1, h2, h3, p, dl, dd, dt, figure, ol, ul, table { margin: 0; }
-img { display: block; max-width: 100%; height: auto; }
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
@@ -209,7 +208,7 @@ code {
 }
 
 /* Hero */
-.hero { padding-block: clamp(56px, 9vw, 112px) 0; text-align: center; }
+.hero { padding-block: clamp(56px, 9vw, 112px) clamp(24px, 4vw, 48px); text-align: center; }
 .hero h1 {
   font-size: 1.3125rem;
   font-weight: 600;
@@ -234,22 +233,6 @@ code {
   gap: 12px 28px;
   margin-top: 26px;
 }
-.hero-figure {
-  margin-top: clamp(44px, 7vw, 88px);
-  overflow: hidden;
-  background: var(--bg-2);
-}
-.hero-figure img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transform-origin: 50% 100%;
-}
-@media (max-width: 735px) {
-  .hero-figure img { aspect-ratio: 4 / 5; }
-}
-
 /* Scroll-lit statement */
 .statement { padding-block: clamp(72px, 11vw, 150px); }
 .lit {
@@ -305,16 +288,6 @@ code {
   .how-grid { grid-template-columns: minmax(0, 1fr); }
   .how-head { position: static; }
 }
-
-/* Photo band */
-.band-wrap { padding-block: 0 clamp(72px, 11vw, 150px); }
-.band { overflow: hidden; border-radius: clamp(16px, 2.5vw, var(--radius)); background: var(--bg-2); }
-.band img {
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  object-fit: cover;
-}
-.band-wrap figcaption { margin-top: 14px; }
 
 /* Specs */
 .specs { padding-block: clamp(64px, 10vw, 128px); background: var(--bg-2); }
@@ -417,23 +390,17 @@ td:last-child { color: var(--fg-2); }
   .display { animation-delay: 0.08s; }
   .hero .intro { animation-delay: 0.16s; }
   .hero .actions { animation-delay: 0.24s; }
-  .hero-figure { animation: fade-in 1.2s ease-out 0.2s both; }
 
   @supports (animation-timeline: view()) {
-    .hero-figure img { animation: push linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
     .lit span { animation: light linear both; animation-timeline: view(); animation-range: cover 28% cover 52%; }
     .step, .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
     .steps::after { animation: grow linear both; animation-timeline: view(); animation-range: cover 18% cover 78%; }
-    .band img { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
   }
 }
 @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes push { from { transform: scale(1); } to { transform: scale(1.08); } }
 @keyframes light { from { color: var(--fg-2); } to { color: var(--fg); } }
 @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes settle { from { transform: scale(1.07); } to { transform: scale(1); } }
 @media print {
   *, *::before, *::after { animation: none !important; }
   .nav { position: static; }
