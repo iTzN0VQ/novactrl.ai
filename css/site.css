@@ -434,3 +434,7 @@ td:last-child { color: var(--fg-2); }
 @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes settle { from { transform: scale(1.07); } to { transform: scale(1); } }
+@media print {
+  *, *::before, *::after { animation: none !important; }
+  .nav { position: static; }
+}
