@@ -596,10 +596,10 @@ td:last-child { color: var(--fg-2); }
 .page-head .lede { margin-top: 12px; max-width: 40rem; color: var(--fg-2); font-size: 1.1875rem; line-height: 1.4; }
 /* Store Front: the STORE FRONT logo centered as the title (the same hero as Mobile tools and AI / SI Skills),
    then Apple Store style shelves of cards with two-tone titles.
-   White cards with a soft shadow on a light gray page (dark cards on black in dark mode); each card is
-   the link (its name's link stretches over it) and lifts a little on hover. A card's media area holds the
-   product's animation, video or photo; until those exist it shows the product's logo. On phones a shelf
-   with more than one card scrolls sideways and snaps card by card. */
+   White cards with a soft shadow on a light gray page; each card is the link (its name's link stretches
+   over it) and lifts a little on hover. A card's media area holds the product's photo, animation or video,
+   edge to edge (.card-photo); a product without one shows its logo. On phones a shelf with more than one
+   card scrolls sideways and snaps card by card. */
 body.store-page { background: var(--store-page); }
 .shelf { padding-bottom: clamp(44px, 6vw, 72px); }
 .shelf:last-of-type { padding-bottom: clamp(72px, 11vw, 140px); }
@@ -649,6 +649,35 @@ body.store-page { background: var(--store-page); }
   .shelf-scroll .card { scroll-snap-align: start; scroll-margin-inline-start: max(22px, env(safe-area-inset-left, 0px)); }
 }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+/* A product photo fills the card's media area edge to edge: the right side of a wide card, the bottom of
+   the others. Below 980px a wide card with a photo stacks, so the photo keeps its 16:9 frame. */
+.card-photo { position: relative; display: block; padding: 0; }
+.card-photo picture { position: absolute; inset: 0; }
+.card-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; background: var(--bg-2); }
+@media (max-width: 979px) {
+  .card-wide:has(.card-photo) { flex-direction: column; min-height: 0; }
+  .card-wide:has(.card-photo) .card-text { flex: none; padding: 30px 30px 0; }
+  .card-photo { flex: none; aspect-ratio: 16 / 9; margin-top: 24px; padding: 0; }
+}
+@media (max-width: 735px) {
+  .card-wide:has(.card-photo) .card-text { padding: 26px 26px 0; }
+}
+
+/* Product photos on a product page (EEV Telemetry): renders in the column with the cards' rounded corners.
+   Each is a <picture>: WebP at 800, 1200 and 2000 px and a 1200 px JPEG fallback, built with every bit of
+   metadata stripped (gen/build_eev_images.py). Width and height are set, so nothing shifts as they load;
+   below the first screen they load lazily. Nothing animates in on scroll. */
+.shot { margin-top: clamp(36px, 6vw, 64px); }
+.shot img, .view img { display: block; width: 100%; height: auto; border-radius: 18px; background: var(--bg-2); }
+.views { padding-block: clamp(56px, 9vw, 112px) clamp(72px, 11vw, 150px); }
+.view { margin-top: clamp(28px, 4.5vw, 48px); }
+.view figcaption { margin-top: 14px; max-width: var(--measure); line-height: 1.45; color: var(--fg-2); }
+.view figcaption strong { font-weight: 600; color: var(--fg); }
+.view-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: clamp(28px, 4.5vw, 48px); }
+.view-pair .view { margin-top: 0; }
+@media (max-width: 735px) {
+  .view-pair { grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 4.5vw, 48px); }
+}
 /* Groups of rows under a big title: the Mobile tools page. Each group is a section with
    a .group-title and a .lines list whose rows use h3 names. */
 .group, .tool-group { padding-top: clamp(40px, 7vw, 80px); }
@@ -667,7 +696,6 @@ body.store-page { background: var(--store-page); }
 .legal-body ul { padding-left: 1.25em; }
 .legal-body li { margin-top: 8px; }
 .legal-body strong { font-weight: 600; color: var(--fg); }
-.tool-note { padding-block: 0 8px; }
 .papers-wrap { padding-block: 16px clamp(72px, 11vw, 150px); }
 .papers { list-style: none; padding: 0; border-top: 1px solid var(--hair); }
 .papers:empty { border-top: 0; }
@@ -741,6 +769,7 @@ body.store-page { background: var(--store-page); }
   .display { animation-delay: 0.08s; }
   .hero .intro { animation-delay: 0.16s; }
   .hero .actions { animation-delay: 0.24s; }
+  .hero .shot { animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.24s both; }
 
   @supports (animation-timeline: view()) {
     .lit span { animation: light linear both; animation-timeline: view(); animation-range: cover 28% cover 52%; }

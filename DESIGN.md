@@ -24,7 +24,9 @@ The site and the app follow the same rules. Read this before changing either.
 
 **Pages.** Each mobile tool has its own page under tools/, with tools/ itself as the index. Moving between pages uses the browser's view transitions: a short cross-fade, the headers held still, and the bar under the current tool gliding to the new one. Browsers without view transitions just load the page.
 
-**Store Front.** The STORE FRONT logo centered as the title, like the Mobile tools and AI / SI Skills pages, then shelves of cards in the Apple Store's style: two-tone shelf titles, white cards with a soft shadow on the gray page, the whole card is the link and lifts 1% on hover. Product media goes in the card's media area; until there is media, the product's logo stands in. On phones a shelf with more than one card scrolls sideways.
+**Store Front.** The STORE FRONT logo centered as the title, like the Mobile tools and AI / SI Skills pages, then shelves of cards in the Apple Store's style: two-tone shelf titles, white cards with a soft shadow on the gray page, the whole card is the link and lifts 1% on hover. Product media fills the card's media area edge to edge (EEV Telemetry's card has its photo); a product with no media shows its logo. On phones a shelf with more than one card scrolls sideways.
+
+**Photos.** Product renders from NovaCTRL only, never stock. They sit in the column with the cards' 18px corners, each a `<picture>` with WebP at 800, 1200 and 2000 px and a 1200 px JPEG, every bit of metadata stripped (assets/eev/, built by gen/build_eev_images.py). Set width and height, lazy-load anything below the first screen, and caption them with what the picture shows.
 
 **FAQ.** One FAQ, at the bottom of the home page, with "What is a skill?" among the questions; every page's footer links to it. Answers state only what's true on the site today.
 

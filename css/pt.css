@@ -190,6 +190,8 @@ fieldset.pair legend { padding: 0; margin-bottom: 6px; font-weight: 600; }
    tools bar, so it starts higher. */
 .tools-hero { padding-block: clamp(36px, 6vw, 80px) 0; }
 .lede { margin-top: 12px; max-width: 40rem; color: var(--fg-2); font-size: 1.1875rem; line-height: 1.4; }
+/* The line under each calculator's lede: reference only, follow the manufacturer, and the Terms. */
+.tool-terms { margin-top: 10px; max-width: 40rem; font-size: 0.875rem; line-height: 1.43; color: var(--fg-2); }
 .chapter { padding-block: clamp(22px, 4vw, 40px); }
 .group.chapter { padding-top: clamp(48px, 8vw, 96px); padding-bottom: clamp(48px, 8vw, 96px); }
 .group.chapter > .wrap + .wrap { margin-top: 18px; }
