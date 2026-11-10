@@ -7,7 +7,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="color-scheme" content="light">
   <title>Diamond System Intelligence</title>
-  <meta name="description" content="A Claude skill that turns a phone photo of a Mitsubishi Field Survey Checklist into a finished Diamond System Builder project: a saved .dsbx and a PDF submittal. From NovaCTRL.">
+  <meta name="description" content="A Claude skill that turns a phone photo of a Mitsubishi Field Survey Checklist into a Diamond System Builder project: a saved .dsbx and a PDF submittal. From NovaCTRL.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/site.css">
 </head>
@@ -30,7 +30,7 @@
       <div class="wrap">
         <h1>Diamond System Intelligence</h1>
         <p class="display">Photo in. Submittal out.</p>
-        <p class="intro muted">A Claude skill that turns a phone photo of a filled-out Mitsubishi Field Survey Checklist into a finished Diamond System Builder project: a saved .dsbx and an exported PDF submittal, sent back to the contractor's phone.</p>
+        <p class="intro muted">A Claude skill that turns a phone photo of a filled-out Mitsubishi Field Survey Checklist into a Diamond System Builder project: a saved .dsbx and an exported PDF submittal, sent back to the contractor's phone.</p>
         <div class="actions">
           <a class="btn" href="#built">How it's built</a>
           <a class="more" href="#how">How it works</a>
@@ -45,7 +45,7 @@
           <span>One page, filled out at the kitchen table.</span>
           <span>One photo, dropped in the chat.</span>
           <span>A submittal that used to wait for a laptop back at the shop.</span>
-          <span>Twenty to thirty minutes saved on every one.</span>
+          <span>Built to save twenty to thirty minutes on each one.</span>
         </p>
       </div>
     </section>
@@ -54,7 +54,7 @@
       <div class="wrap how-grid">
         <div class="how-head">
           <h2>How it works</h2>
-          <p class="intro muted">The form is the spec. The skill builds exactly what is on it and stops if anything is missing.</p>
+          <p class="intro muted">The form is the spec. The skill is built to follow it exactly and to stop when something is missing.</p>
         </div>
         <ol class="steps">
           <li class="step">
@@ -65,14 +65,14 @@
           <li class="step">
             <span class="num">2</span>
             <h3>The skill checks the form, then drives DSB.</h3>
-            <p>Every required field, contradiction-free. If anything is blank or unreadable it tells you exactly what to fix instead of guessing.</p>
+            <p>It checks the required fields for blanks and contradictions. When something is blank or unreadable, it&rsquo;s designed to tell you what to fix instead of guessing.</p>
             <p>Then it opens Diamond System Builder on a Windows machine through Claude's computer-use and works through it the way you would: project properties, outdoor unit, branch box, every indoor unit, every controller. Along the way it fills in each room&rsquo;s floor area for the R-454B check and sets M-NET defaults, branch box end caps and per-zone controller routing.</p>
           </li>
           <li class="step">
             <span class="num">3</span>
             <h3>A .dsbx and a PDF come back.</h3>
             <p>The project is saved and the PDF submittal exported to the folder the form specifies. The PDF is attached back to the chat, so the contractor opens it on their phone.</p>
-            <p>If DSB reports a design error, the skill stops, names the conflict and waits for a corrected form. Design choices stay with the tech.</p>
+            <p>If DSB reports a design error, the skill is built to stop, name the conflict and wait for a corrected form. Design choices stay with the tech, and so does the final check of every submittal.</p>
           </li>
         </ol>
       </div>
@@ -86,9 +86,9 @@
         <dl class="spec-grid">
           <div class="reveal"><dt>Equipment</dt><dd>M-Series single zone, MXZ multi-zone, MXZ-SM Smart Multi and P-Series. Current-generation R-454B models.</dd></div>
           <div class="reveal"><dt>Indoor units</dt><dd>Up to eight per project: zone, type, capacity, mount height, lineset, number of 90s, vertical rise or drop, floor area and controller for each.</dd></div>
-          <div class="reveal"><dt>Branch boxes</dt><dd>Three-port and five-port, with the run from the outdoor unit, the elbows and the elevation taken from the form. End caps handled.</dd></div>
+          <div class="reveal"><dt>Branch boxes</dt><dd>Three-port and five-port, with the run from the outdoor unit, the elbows and the elevation taken from the form. End caps set.</dd></div>
           <div class="reveal"><dt>Controllers</dt><dd>PAR-42 wired, MHK2 wireless, kumo cloud, and PAC-445 with a third-party thermostat, routed per zone.</dd></div>
-          <div class="reveal"><dt>Validation</dt><dd>Every required field checked and contradictions flagged before DSB opens. Blank or unreadable means you are told what to fix.</dd></div>
+          <div class="reveal"><dt>Validation</dt><dd>Required fields checked and contradictions flagged before DSB opens. Blank or unreadable fields come back as a list of what to fix.</dd></div>
           <div class="reveal"><dt>Output</dt><dd>A saved .dsbx project and an exported PDF submittal in the folder the form names, with the PDF attached back to the chat.</dd></div>
           <div class="reveal"><dt>Runs in</dt><dd>Claude, through the NovaCTRL connector. Coming soon.</dd></div>
           <div class="reveal"><dt>Needs</dt><dd>A Windows machine with Diamond System Builder installed, and Claude with computer-use access to DSB and File Explorer.</dd></div>
@@ -104,9 +104,9 @@
         <p class="intro muted measure">Diamond System Intelligence isn't written once and shipped. It's trained every day, inside Diamond System Builder itself.</p>
         <div class="built-body measure">
           <p>It began with Claude Opus 4.6, the first model we found that could take over a computer and work through Diamond System Builder on its own. Those first runs were slow and clumsy, but they finished, and that was enough to show what the skill could become.</p>
-          <p>So we gave it a way to keep improving. Every day, an agent on the latest Claude models works job after job in Diamond System Builder. Every roadblock and every failure is studied and turned into something the skill knows the next time. It has also studied Mitsubishi's library of published manuals, so the rules it follows are the ones the equipment is designed around.</p>
-          <p>That learning compounds. Each day starts from everything the days before taught it, so the skill gets sharper the longer it trains. Catching up would take more than the idea. It would take the same daily investment, kept up for as long as we've kept it up.</p>
-          <p>What reaches you is the result, and we believe it's the most capable Diamond System Builder agent there is: one that has already run into the mistakes, so you never have to. Video tutorials showing it at work are on the way.</p>
+          <p>So we gave it a way to keep improving. Every day, an agent on the latest Claude models works job after job in Diamond System Builder. Roadblocks and failures are studied and turned into what the skill knows the next time. It has also studied Mitsubishi's library of published manuals, the same rules the equipment is designed around.</p>
+          <p>That learning compounds. Each day starts from what the days before taught it, so the skill is built to get sharper the longer it trains. Catching up would take more than the idea. It would take the same daily investment, kept up for as long as we've kept it up.</p>
+          <p>What reaches you is the result: a skill shaped by the runs that came before yours. You still check its work, the way you would anyone&rsquo;s. Video tutorials showing it at work are on the way.</p>
         </div>
       </div>
     </section>
@@ -138,7 +138,7 @@
         <p class="intro muted measure">Diamond System Intelligence is closed source. It's coming to Claude through a NovaCTRL connector, here on novactrl.ai: connect it once and Claude can run the skill.</p>
         <dl class="get-grid">
           <div class="reveal"><dt>Through</dt><dd>A NovaCTRL connector for Claude, from novactrl.ai.</dd></div>
-          <div class="reveal"><dt>Updates</dt><dd>Every improvement from its daily training reaches you without reinstalling anything.</dd></div>
+          <div class="reveal"><dt>Updates</dt><dd>Improvements from its daily training come through the connector, with nothing to reinstall.</dd></div>
           <div class="reveal"><dt>Then</dt><dd>Send Claude the photo and say <strong>build the DSB</strong>, <strong>spin up DSB</strong>, <strong>run the submittal</strong> or <strong>do the worksheet</strong>.</dd></div>
         </dl>
         <p class="caption get-status">Coming soon, with video tutorials showing it at work.</p>
