@@ -1,0 +1,758 @@
+/* novactrl.ai
+   Landing page plus the Diamond System Intelligence product page, in the manner of Apple product pages.
+   Landing: a centered statement hero and three rows (hardware, software, AI / SI skills).
+   DSI page: a centered statement hero; a scroll-lit statement;
+   "How it works" with a sticky title beside three steps and a progress line that fills as you
+   scroll; a specs grid; the checklist table; the install block; a short
+   NovaCTRL overview; a one-line footer. One 980px column, 640px text measure, system type.
+   Animations are opacity, transform and color only, driven by CSS scroll timelines where the
+   browser has them and simply absent where it doesn't. */
+/* Colors: the white page stays; NovaCTRL's Inland filament colors are sprinkled in.
+   ABS blue   #054990  measured: Inland Blue PLA+ (filamentcolors.xyz 2024; no Inland ABS blue swatch exists, Inland's blues all measure about this)
+   ABS silver #7f807e  measured: eSUN Silver ABS+ (filamentcolors.xyz 4508), the same part number Inland sells as ABS silver
+   ABS black  #3f3a3f  measured: eSUN Black ABS (filamentcolors.xyz 148)
+   TPU black  #1b1a1c  matte black; no measured swatch exists, chosen to read as rubber next to the ABS black */
+:root {
+  --abs-blue: #054990;
+  --abs-silver: #7f807e;
+  --abs-black: #3f3a3f;
+  --tpu-black: #1b1a1c;
+  --logo-ink: #000000;
+  --logo-blue: #0002d7;
+  --bg: #ffffff;
+  --bg-2: #f2f2f1;
+  --fg: #1b1a1c;
+  --fg-2: #5e5f5d;
+  --hair: #d4d5d3;
+  --link: #054990;
+  --cta: #054990;
+  --cta-hover: #0a5aab;
+  --cta-fg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.78);
+  --nav-line: rgba(27, 26, 28, 0.08);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --col: 980px;
+  --measure: 640px;
+  --nav-h: 48px;
+  --radius: 28px;
+  color-scheme: light; /* always the white site, even when the device is in dark mode */
+  --store-page: var(--bg-2);
+  --store-card: var(--bg);
+  --card-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 2px 4px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Page-to-page transitions: a short cross-fade, with the header and the tools bar held still. */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: site-nav; }
+.localnav { view-transition-name: tools-nav; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.22s; animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); }
+::view-transition-group(ln-bar) { animation-duration: 0.35s; animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 16px); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--nav-bg);
+}
+h1, h2, h3, p, dl, dd, dt, figure, ol, ul, table { margin: 0; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: var(--col);
+  margin-inline: auto;
+  padding-left: max(22px, env(safe-area-inset-left, 0px));
+  padding-right: max(22px, env(safe-area-inset-right, 0px));
+}
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  z-index: 50;
+  padding: 10px 14px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.skip:focus { left: 16px; }
+
+/* Type */
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+.intro {
+  font-size: clamp(1.1875rem, 1.3vw + 0.9rem, 1.3125rem);
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+}
+.muted { color: var(--fg-2); }
+.caption {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: var(--fg-2);
+}
+.measure { max-width: var(--measure); }
+code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  letter-spacing: 0;
+}
+
+/* Links and buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  background: var(--cta);
+  color: var(--cta-fg);
+  border-radius: 980px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--cta-hover); text-decoration: none; }
+.more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+.more::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-left: 7px;
+  border: solid currentColor;
+  border-width: 1.5px 1.5px 0 0;
+  transform: rotate(45deg);
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--nav-line);
+}
+.nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--abs-blue) 0 25%, var(--bg) 25% calc(25% + 2px),
+    var(--abs-silver) calc(25% + 2px) 50%, var(--bg) 50% calc(50% + 2px),
+    var(--abs-black) calc(50% + 2px) 75%, var(--bg) 75% calc(75% + 2px),
+    var(--tpu-black) calc(75% + 2px) 100%);
+  pointer-events: none;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: var(--nav-h);
+}
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.wordmark:hover { text-decoration: none; }
+/* The logos: traced to SVG from the official artwork. The site is always light, so there's one version of each. */
+.logo { display: block; }
+.logo-mark img { display: block; width: auto; height: 30px; }
+.hero h1.hero-logo { margin: 0 auto 12px; max-width: 600px; }
+.logo-hero img { display: block; width: 100%; height: auto; }
+
+/* Wet paint: as you scroll, the hero logo's drips keep running. Each drip starts inside a drip tip in the
+   artwork (positions and widths measured from the logo, in % of the logo's width, so they hold at any
+   size), and a thin line with a teardrop bead at its end slides out of that tip as the page scrolls.
+   CSS scroll-driven animation, no script. The long drip off the end of the L is the page's progress
+   line; it's further down. Browsers without scroll timelines, anyone who asks for reduced motion, and
+   print all get the logo as drawn. */
+.logo-hero { position: relative; container-type: inline-size; }
+.drips {
+  --span: calc(clamp(56px, 9vw, 112px) + min(120px, 20vw)); /* about how far you scroll before the hero logo is gone */
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  pointer-events: none;
+}
+.drip {
+  --lw: max(1px, calc(var(--w) * 1cqw));
+  --bw: calc(var(--s) * 1cqw);
+  position: absolute;
+  left: calc(var(--x) * 1cqw);
+  top: calc(var(--y) * 1cqw - 0.35cqw);
+  width: calc(var(--bw) + 2px);
+  height: calc(var(--len) * 1cqw + var(--bw));
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.drip.k { color: var(--logo-ink); }
+.drip.b { color: var(--logo-blue); }
+.drip .dl {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--lw);
+  height: calc(var(--len) * 1cqw);
+  margin-left: calc(var(--lw) / -2);
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateY(-100%);
+}
+.drip .db {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: var(--bw);
+  height: var(--bw);
+  margin: calc(var(--bw) / -2) 0 0 calc(var(--bw) / -2);
+  transform-origin: 50% -20.7%;
+  transform: scale(0.35);
+}
+.drip .db::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0 50% 50% 50%;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+/* x, y: the drip tip. w: line width. s: bead width. len: how far it runs. a to b: when it runs,
+   as a share of --span, so the drips don't all move together. */
+.d1 { --x: 8.84; --y: 28.92; --w: 0.32; --s: 0.52; --len: 6; --a: 0.05; --b: 1; }
+.d3 { --x: 51.43; --y: 28.73; --w: 0.26; --s: 0.44; --len: 4; --a: 0.15; --b: 0.8; }
+.d4 { --x: 55.59; --y: 28.87; --w: 0.34; --s: 0.56; --len: 7.5; --a: 0; --b: 1.15; }
+.d5 { --x: 74.31; --y: 27.94; --w: 0.36; --s: 0.58; --len: 3.5; --a: 0.25; --b: 0.75; }
+.d6 { --x: 89.94; --y: 28.03; --w: 0.26; --s: 0.44; --len: 5; --a: 0.1; --b: 0.95; }
+.hero .display.stack { position: relative; z-index: 1; }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .drips { display: block; }
+    .hero h1.hero-logo:has(.drips) { max-width: none; margin-bottom: calc(0.07 * var(--W, 600px) + 8px); }
+    .drip .dl, .drip .db {
+      animation: drip-run cubic-bezier(0.3, 0.6, 0.4, 1) both;
+      animation-timeline: scroll(root);
+      animation-range: calc(var(--a) * var(--span)) calc(var(--b) * var(--span));
+    }
+    .drip .db { animation-name: drip-bead; animation-timing-function: linear; }
+  }
+}
+@media print { .drips { display: none !important; } }
+@keyframes drip-run { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes drip-bead { from { transform: scale(0.35); } to { transform: scale(1); } }
+
+/* The L's drip, the page's progress line (home page). It leaves the drip under the end of the L in
+   "CTRL" and runs down the right side of the screen as you scroll: its bead sits where you are in the
+   page, top of the screen at the top of the page, bottom of the screen at the end, and the line runs
+   back up to the L while the logo is on screen. How: .run is a strip from the drip tip down to the end
+   of <main>, clipped at its top edge; the bead inside it is sticky, and its sticky offset (top) moves
+   down the screen with a scroll timeline; the line is the bead's ::before, reaching up to the strip's
+   top. While it runs, the hero logo spans the whole column at every screen size, so the L sits at the
+   right side on a phone and on a desktop alike, and the text leaves the strip a lane (the rows and FAQ
+   end a little early, the centered lines are a little narrower). Positions use the hero's own numbers
+   (its top padding and the 22px wrap gutters); keep them in step with .hero and .wrap. */
+.run { display: none; }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    main:has(> .run) {
+      --gl: max(22px, env(safe-area-inset-left, 0px));
+      --gr: max(22px, env(safe-area-inset-right, 0px));
+      --W: calc(min(100cqw, var(--col)) - var(--gl) - var(--gr)); /* the hero logo's width: the column */
+      --lane: calc(0.0342 * var(--W) + 8px);                     /* the room the text leaves the strip */
+      position: relative;
+      container-type: inline-size;
+    }
+    .run {
+      --tip: calc(clamp(56px, 9vw, 112px) + 0.2352 * var(--W)); /* just inside the L's drip tip */
+      --lw: max(1.5px, calc(0.003 * var(--W)));
+      --bw: max(3.6px, calc(0.0052 * var(--W)));
+      --from: calc(var(--nav-h) + 1px + var(--tip));
+      display: block;
+      position: absolute;
+      z-index: 2;
+      top: var(--tip);
+      bottom: 0;
+      left: calc((100cqw - min(100cqw, var(--col))) / 2 + var(--gl) + 0.9658 * var(--W));
+      width: calc(var(--bw) + 2px);
+      transform: translateX(-50%);
+      overflow: clip;
+      color: var(--logo-blue);
+      pointer-events: none;
+    }
+    .run-bead {
+      position: sticky;
+      display: block;
+      width: var(--bw);
+      height: var(--bw);
+      margin-inline: auto;
+      animation: run-down linear both;
+      animation-timeline: scroll(root);
+    }
+    .run-bead::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      width: var(--lw);
+      height: 100lvh;
+      margin-left: calc(var(--lw) / -2);
+      background: currentColor;
+    }
+    .run-bead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 0 50% 50% 50%;
+      background: currentColor;
+      transform: rotate(45deg) scale(0.4);
+      animation: run-bead linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 160px;
+    }
+    main:has(> .run) .line,
+    main:has(> .run) .faq-item > summary,
+    main:has(> .run) .faq-a { padding-right: var(--lane); }
+    main:has(> .run) .hero .intro { max-width: min(37rem, calc(100% - 2 * var(--lane))); text-wrap: balance; }
+    main:has(> .run) .hero-note { max-width: calc(100% - 2 * var(--lane)); margin-inline: auto; text-wrap: balance; }
+  }
+}
+@media print { .run { display: none !important; } }
+@keyframes run-down { from { top: calc(var(--from) - 2px); } to { top: calc(100dvh - 30px); } }
+@keyframes run-bead { from { transform: rotate(45deg) scale(0.4); } to { transform: rotate(45deg) scale(1); } }
+
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 10px;
+  font-size: 0.875rem;
+  color: var(--fg);
+  opacity: 0.85;
+}
+.nav-links a:hover { opacity: 1; text-decoration: none; }
+.nav-links a[aria-current="page"] { color: var(--abs-blue); opacity: 1; }
+@media (max-width: 400px) {
+  .nav-links a { padding-inline: 7px; font-size: 0.8125rem; }
+}
+@media (max-width: 359px) {
+  .nav-links a { padding-inline: 5px; font-size: 0.75rem; }
+  .logo-mark img { height: 27px; }
+}
+
+/* Hero */
+.hero { padding-block: clamp(56px, 9vw, 112px) clamp(24px, 4vw, 48px); text-align: center; }
+.hero h1 {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg-2);
+}
+.display {
+  max-width: 13ch;
+  margin: 10px auto 0;
+  font-size: clamp(2.75rem, 7.6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.hero .intro { max-width: 37rem; margin: 22px auto 0; }
+.intro-line { display: block; }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 28px;
+  margin-top: 26px;
+}
+.hero-note { margin-top: 22px; font-size: 0.9375rem; line-height: 1.45; color: var(--fg-2); }
+.hero-note a { white-space: nowrap; }
+.hero-note a::after { content: " \203A"; }
+/* Scroll-lit statement */
+.statement { padding-block: clamp(72px, 11vw, 150px); }
+.lit {
+  max-width: 24ch;
+  font-size: clamp(1.625rem, 4.2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+}
+.lit span { display: block; }
+.lit span + span { margin-top: 0.55em; }
+
+/* How it works */
+.how { padding-block: clamp(32px, 6vw, 72px) clamp(72px, 11vw, 150px); }
+.how-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px clamp(40px, 7vw, 96px);
+  align-items: start;
+}
+.how-head { position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 32px); }
+.how-head .intro { margin-top: 16px; max-width: 24rem; }
+.steps {
+  position: relative;
+  list-style: none;
+  padding: 0 0 0 36px;
+}
+.steps::before, .steps::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+.steps::before { background: var(--hair); }
+.steps::after { background: var(--fg); transform-origin: 50% 0; }
+.step { position: relative; padding-block: 8px; }
+.step + .step { margin-top: clamp(40px, 6vw, 72px); }
+.num {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+.step p { margin-top: 12px; color: var(--fg-2); }
+.step p + p { margin-top: 10px; }
+.step strong { color: var(--fg); font-weight: 600; }
+@media (max-width: 735px) {
+  .how-grid { grid-template-columns: minmax(0, 1fr); }
+  .how-head { position: static; }
+}
+
+/* Specs */
+.specs { padding-block: clamp(64px, 10vw, 128px); background: var(--bg-2); }
+.specs h2 + .intro { margin-top: 16px; }
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(32px, 5vw, 64px);
+  margin-top: clamp(32px, 5vw, 56px);
+}
+.spec-grid > div {
+  min-width: 0;
+  padding-block: 20px 24px;
+  border-top: 1px solid var(--hair);
+}
+.spec-grid dt { font-size: 0.875rem; font-weight: 600; color: var(--fg-2); }
+.spec-grid dd { margin-top: 6px; }
+@media (max-width: 640px) {
+  .spec-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Checklist table */
+.form { padding-block: clamp(64px, 10vw, 128px); }
+.form h2 + .intro { margin-top: 16px; }
+.table-wrap { margin-top: clamp(28px, 4vw, 44px); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  padding: 16px 20px 16px 0;
+  border-bottom: 1px solid var(--hair);
+  text-align: left;
+  vertical-align: top;
+}
+th { font-size: 0.875rem; font-weight: 600; color: var(--fg-2); }
+td:first-child { width: 2.75rem; color: var(--fg-2); font-variant-numeric: tabular-nums; }
+td:nth-child(2) { width: 11rem; font-weight: 600; white-space: nowrap; }
+td:last-child { color: var(--fg-2); }
+@media (max-width: 640px) {
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  table, tbody { display: block; }
+  tr {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding-block: 14px 16px;
+    border-bottom: 1px solid var(--hair);
+  }
+  td { padding: 0; border: 0; }
+  td:first-child, td:nth-child(2) { width: auto; }
+  td:nth-child(2) { white-space: normal; }
+  td:last-child { grid-column: 2; margin-top: 4px; }
+}
+
+/* Install */
+.get { padding-block: clamp(64px, 10vw, 128px); background: var(--bg-2); }
+.get h2 + .intro { margin-top: 16px; }
+.get-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px clamp(24px, 4vw, 48px);
+  margin-top: clamp(32px, 5vw, 56px);
+}
+.get-grid > div { min-width: 0; padding-top: 20px; border-top: 1px solid var(--hair); }
+.get-grid dt { font-weight: 600; }
+.get-grid dd { margin-top: 6px; color: var(--fg-2); }
+.get-grid code { color: var(--fg); overflow-wrap: anywhere; }
+.get .actions { justify-content: flex-start; margin-top: clamp(32px, 5vw, 48px); }
+.get .caption { align-self: center; }
+@media (max-width: 735px) {
+  .get-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* About NovaCTRL */
+/* DSI: how the skill is built, the story section. */
+.built { padding-block: clamp(64px, 10vw, 128px); }
+.built h2 + .intro { margin-top: 16px; }
+.built-body { margin-top: clamp(24px, 4vw, 36px); }
+.built-body p { color: var(--fg-2); font-size: 1.0625rem; line-height: 1.55; }
+.built-body p + p { margin-top: 16px; }
+.get-status { margin-top: clamp(28px, 4vw, 40px); }
+.about { padding-block: clamp(64px, 10vw, 128px); }
+.about h2 + .intro { margin-top: 14px; }
+.about p + p { margin-top: 18px; }
+.mission {
+  margin-top: 28px;
+  font-size: 1.3125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Landing page: three rows for what NovaCTRL makes */
+.display.wide { max-width: 18ch; }
+/* The landing headline as a stack: each thing NovaCTRL makes on its own line */
+.display.stack { max-width: none; font-size: clamp(2rem, 10.5vw, 5rem); }
+.display.stack > span { display: block; white-space: nowrap; }
+/* read by screen readers, not shown */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lines-wrap { padding-block: clamp(24px, 4vw, 48px) clamp(72px, 11vw, 150px); }
+.lines { list-style: none; padding-block: 0; border-top: 1px solid var(--hair); }
+.line {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 8px clamp(24px, 5vw, 64px);
+  padding-block: clamp(24px, 3.5vw, 36px);
+  border-bottom: 1px solid var(--hair);
+}
+.line h2 { font-size: clamp(1.5rem, 3.2vw, 2.25rem); }
+.line > div { min-width: 0; }
+.line p { color: var(--fg-2); max-width: 36rem; }
+.line .status { margin-top: 8px; font-weight: 600; color: var(--fg-2); }
+.line .status.live { color: var(--abs-blue); }
+.line h2 a { color: var(--fg); }
+.line h2 a:hover { color: var(--abs-blue); text-decoration: none; }
+.line .status .more { min-height: 0; margin-left: 6px; font-weight: 400; }
+@media (max-width: 640px) {
+  .line { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* White papers: the index and the article layout every paper uses */
+.page-head { padding-block: clamp(40px, 7vw, 80px) 12px; }
+.page-head h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+.page-head .lede { margin-top: 12px; max-width: 40rem; color: var(--fg-2); font-size: 1.1875rem; line-height: 1.4; }
+/* Store Front: the STORE FRONT logo centered as the title (the same hero as Mobile tools and AI / SI Skills),
+   then Apple Store style shelves of cards with two-tone titles.
+   White cards with a soft shadow on a light gray page (dark cards on black in dark mode); each card is
+   the link (its name's link stretches over it) and lifts a little on hover. A card's media area holds the
+   product's animation, video or photo; until those exist it shows the product's logo. On phones a shelf
+   with more than one card scrolls sideways and snaps card by card. */
+body.store-page { background: var(--store-page); }
+.shelf { padding-bottom: clamp(44px, 6vw, 72px); }
+.shelf:last-of-type { padding-bottom: clamp(72px, 11vw, 140px); }
+.shelf-title { margin-bottom: 20px; font-size: clamp(1.5rem, 2.8vw, 1.75rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.012em; color: var(--fg-2); }
+.shelf-title span { color: var(--fg); }
+.cards { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.wrap > .cards { padding: 0; }
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  border-radius: 18px;
+  background: var(--store-card);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0, 0, 0.5, 1), box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+@media (hover: hover) {
+  .card:hover { transform: scale(1.01); box-shadow: var(--card-shadow-hover); }
+}
+.card-text { padding: 30px 30px 0; }
+.card-eyebrow { font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em; color: var(--abs-blue); }
+.card h3 { margin-top: 6px; font-size: clamp(1.5rem, 2.6vw, 1.75rem); font-weight: 600; line-height: 1.14; letter-spacing: -0.01em; }
+.card h3 a { color: var(--fg); }
+.card h3 a:hover { text-decoration: none; }
+.card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: 18px; }
+.card h3 a:focus-visible { outline: none; }
+.card h3 a:focus-visible::after { outline: 3px solid var(--link); outline-offset: 3px; }
+.card-text p:not(.card-eyebrow) { margin-top: 10px; max-width: 26rem; font-size: 1.0625rem; line-height: 1.45; color: var(--fg-2); }
+.card-media { flex: 1; display: grid; place-items: center; padding: 30px; }
+.card-media > img, .card-media > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card-logo { width: 74%; }
+.card-logo img { display: block; width: 100%; height: auto; }
+.card-wide { grid-column: 1 / -1; flex-direction: row; min-height: 460px; }
+.card-wide .card-text { flex: 0 0 40%; padding: 44px 0 44px 44px; }
+.card-wide .card-logo { width: 82%; }
+@media (max-width: 735px) {
+  .card { min-height: 0; }
+  .card-media { aspect-ratio: 4 / 3; flex: none; padding: 24px; }
+  .card-text { padding: 26px 26px 0; }
+  .card-wide { flex-direction: column; }
+  .card-wide .card-text { flex: none; padding: 26px 26px 0; }
+  .shelf-scroll { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .shelf-scroll::-webkit-scrollbar { display: none; }
+  .shelf-scroll .cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(84vw, 340px); width: max-content; min-width: 100%; padding-block: 4px 16px; }
+  .shelf-scroll .card { scroll-snap-align: start; scroll-margin-inline-start: max(22px, env(safe-area-inset-left, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+/* Groups of rows under a big title: the Mobile tools page. Each group is a section with
+   a .group-title and a .lines list whose rows use h3 names. */
+.group, .tool-group { padding-top: clamp(40px, 7vw, 80px); }
+.tool-group:last-of-type { padding-bottom: clamp(72px, 11vw, 150px); }
+.tool-group .lines { margin-top: 18px; }
+.line h3 { font-size: clamp(1.5rem, 3.2vw, 2.25rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.015em; }
+.line h3 a { color: var(--fg); }
+.line h3 a:hover { color: var(--abs-blue); text-decoration: none; }
+.group-title { font-size: clamp(2.25rem, 6vw, 3.5rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+/* Legal pages: Privacy Policy, Terms of Use, Accessibility. One readable column. */
+.legal-meta { margin-top: 12px; font-size: 0.9375rem; color: var(--fg-2); }
+.legal { padding-block: 12px clamp(72px, 11vw, 150px); }
+.legal-body > * { max-width: var(--measure); }
+.legal-body h2 { margin-top: clamp(30px, 4.5vw, 42px); font-size: clamp(1.25rem, 2.4vw, 1.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.legal-body p, .legal-body li { margin-top: 12px; line-height: 1.6; color: var(--fg-2); }
+.legal-body ul { padding-left: 1.25em; }
+.legal-body li { margin-top: 8px; }
+.legal-body strong { font-weight: 600; color: var(--fg); }
+.tool-note { padding-block: 0 8px; }
+.papers-wrap { padding-block: 16px clamp(72px, 11vw, 150px); }
+.papers { list-style: none; padding: 0; border-top: 1px solid var(--hair); }
+.papers:empty { border-top: 0; }
+.paper-item { padding-block: 22px; border-bottom: 1px solid var(--hair); }
+.paper-item time { font-size: 0.875rem; font-weight: 600; color: var(--abs-blue); font-variant-numeric: tabular-nums; }
+.paper-item h2 { margin-top: 4px; font-size: clamp(1.375rem, 3vw, 1.75rem); }
+.paper-item p { margin-top: 6px; max-width: 40rem; color: var(--fg-2); }
+.papers-empty { padding: 22px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); color: var(--fg-2); }
+.papers:not(:empty) + .papers-empty { display: none; }
+.paper { padding-block: clamp(40px, 7vw, 80px) clamp(72px, 11vw, 150px); }
+.paper header time { font-size: 0.875rem; font-weight: 600; color: var(--abs-blue); }
+.paper h1 { margin-top: 6px; max-width: 22ch; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+.paper .standfirst { margin-top: 14px; max-width: var(--measure); font-size: 1.1875rem; line-height: 1.45; color: var(--fg-2); }
+.paper-body { max-width: var(--measure); margin-top: 32px; }
+.paper-body > * + * { margin-top: 16px; }
+.paper-body h2 { margin-top: 40px; font-size: 1.5rem; }
+.paper-body h3 { margin-top: 28px; font-size: 1.1875rem; }
+.paper-body ul, .paper-body ol { padding-left: 22px; }
+.paper-body figure img { display: block; max-width: 100%; height: auto; border-radius: 8px; }
+.paper-body figcaption { margin-top: 6px; font-size: 0.875rem; color: var(--fg-2); }
+.paper-body blockquote { margin-left: 0; padding-left: 16px; border-left: 3px solid var(--abs-blue); color: var(--fg-2); }
+.paper-body .table-wrap { margin-top: 16px; }
+
+/* FAQ: questions as rows that open in place */
+.faq { padding-block: clamp(32px, 6vw, 64px) clamp(72px, 11vw, 150px); }
+.lines-wrap + .faq { padding-top: 0; }
+.faq h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+.faq-list { margin-top: 18px; border-top: 1px solid var(--hair); }
+.faq-item { border-bottom: 1px solid var(--hair); }
+.faq-item > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary:hover { color: var(--abs-blue); }
+.faq .chev { width: 14px; height: 14px; flex: none; color: var(--fg-2); transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.faq-item[open] .chev { transform: rotate(180deg); }
+.faq-a { max-width: var(--measure); padding-bottom: 22px; color: var(--fg-2); animation: faq-open 0.28s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.faq-a p + p { margin-top: 12px; }
+@keyframes faq-open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .faq .chev { transition: none; } .faq-a { animation: none; } }
+
+/* Footer */
+.foot { padding-block: 24px calc(28px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--hair); }
+.foot-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  font-size: 0.75rem;
+  color: var(--fg-2);
+}
+.foot nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.foot-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; }
+.foot-legal nav { gap: 4px 16px; }
+.foot a { color: var(--fg-2); padding-block: 6px; }
+.foot a:hover { color: var(--fg); }
+
+/* Motion. Everything below is additive: without it the page is complete and still. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .hero h1, .display, .hero .intro, .actions { animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .display { animation-delay: 0.08s; }
+  .hero .intro { animation-delay: 0.16s; }
+  .hero .actions { animation-delay: 0.24s; }
+
+  @supports (animation-timeline: view()) {
+    .lit span { animation: light linear both; animation-timeline: view(); animation-range: cover 28% cover 52%; }
+    .step, .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+    .steps::after { animation: grow linear both; animation-timeline: view(); animation-range: cover 18% cover 78%; }
+  }
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes light { from { color: var(--fg-2); } to { color: var(--fg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@media print {
+  *, *::before, *::after { animation: none !important; }
+  .nav { position: static; }
+}

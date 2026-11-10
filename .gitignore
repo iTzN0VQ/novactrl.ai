@@ -1,0 +1,7 @@
+.push-complete 
+.push-log.txt 
+push-to-github.bat 
+_deploy/ 
+downloads/ 
+copy-eev-photos.bat 
+.eev-copy-complete 

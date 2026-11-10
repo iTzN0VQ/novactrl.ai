@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light">
+  <title>Temperature glide · NovaCTRL Mobile Tools</title>
+  <meta name="description" content="How far a blend's boiling point moves across the coil at one pressure, and which point to use for what.">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/pt.css">
+  <script src="../../js/localnav.js" defer></script>
+  <script src="../../js/pt-data.js" defer></script>
+  <script src="../../js/pt-core.js" defer></script>
+  <script src="../../js/pt.js" defer></script>
+</head>
+<body class="tool">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="../../"><span class="logo logo-mark"><img class="logo-light" src="../../assets/logo/novactrl-logo.svg" alt="NovaCTRL" width="102" height="30"></span></a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="../../store/">Store Front</a>
+        <a href="../../tools/" aria-current="page">Tools</a>
+        <a href="../../skills/">Skills</a>
+        <a href="../../papers/">Papers</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="localnav" id="localnav" aria-label="Mobile tools">
+    <div class="wrap localnav-inner">
+      <a class="ln-title" href="../">Mobile tools</a>
+      <button type="button" class="ln-menu" id="ln-menu" aria-expanded="false" aria-controls="ln-links">Mobile tools <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <ul class="ln-links" id="ln-links">
+        <li class="ln-group" aria-hidden="true">Refrigerant</li>
+        <li><a href="../pt/">PT chart</a></li>
+        <li><a href="../superheat-subcooling/">Superheat &amp; subcooling</a></li>
+        <li><a href="../glide/" aria-current="page">Glide<span class="ln-bar" aria-hidden="true"></span></a></li>
+        <li><a href="../altitude/">Altitude</a></li>
+        <li class="ln-group" aria-hidden="true">Air side</li>
+        <li class="ln-first"><a href="../capacity/">Capacity</a></li>
+        <li class="ln-group" aria-hidden="true">Reference</li>
+        <li class="ln-first"><a href="../sources/">Sources</a></li>
+      </ul>
+      <label class="ln-ref"><span class="sr">Refrigerant</span><select id="ref" aria-label="Refrigerant"></select></label>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="tool-hero">
+      <div class="wrap">
+        <h1>Temperature glide</h1>
+        <p class="lede">How far a blend’s boiling point moves across the coil at one pressure, and which point to use for what.</p>
+        <div class="setup">
+          <button type="button" class="setup-site" id="site-toggle" aria-expanded="false" aria-controls="site-panel"><span class="bar-k">Site</span> <span id="site-label">Sea level</span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="seg" role="group" aria-label="Temperature unit">
+            <button type="button" data-tunit="F" aria-pressed="true">°F</button>
+            <button type="button" data-tunit="C" aria-pressed="false">°C</button>
+          </div>
+        </div>
+        <div class="site-panel" id="site-panel" hidden>
+      <div class="site-grid">
+        <label class="field">
+          <span>Set site pressure by</span>
+          <select id="site-mode">
+            <option value="alt">Elevation</option>
+            <option value="baro">Station barometer</option>
+            <option value="psia">Absolute pressure</option>
+          </select>
+        </label>
+        <label class="field" id="site-alt-wrap">
+          <span>Elevation</span>
+          <span class="with-unit"><input id="site-alt" type="number" step="any" value="0"><select id="site-alt-unit" aria-label="Elevation unit"><option value="ft">ft</option><option value="m">m</option></select></span>
+        </label>
+        <label class="field" id="site-baro-wrap" hidden>
+          <span>Station pressure, inHg</span>
+          <input id="site-baro" type="number" step="any" value="29.92">
+        </label>
+        <label class="field" id="site-psia-wrap" hidden>
+          <span>Atmosphere, psia</span>
+          <input id="site-psia" type="number" step="any" value="14.696">
+        </label>
+      </div>
+      <p class="caption" id="site-note"></p>
+    </div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="wrap">
+        <div class="panel">
+          <p class="measure" id="glide-text"></p>
+          <figure class="plot">
+            <svg id="glide-plot" viewBox="0 0 640 300" role="img" aria-labelledby="glide-cap"></svg>
+            <figcaption class="caption" id="glide-cap"></figcaption>
+          </figure>
+          <div class="table-wrap">
+            <table class="data" id="glide-table"></table>
+          </div>
+          <p class="src-line" id="glide-src"></p>
+        </div>
+      </div>
+    </section>
+  <noscript><p class="wrap caption">This tool needs JavaScript to run. The Sources page lists every published table it uses.</p></noscript>
+    <p class="wrap caption tool-note">For reference. Confirm results with the equipment manufacturer&rsquo;s data and your own instruments. <a href="../../terms/">Terms of Use</a></p>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-legal">
+        <p>© 2026 NovaCTRL. All rights reserved.</p>
+        <nav aria-label="Legal">
+          <a href="../../privacy/">Privacy Policy</a>
+          <a href="../../terms/">Terms of Use</a>
+          <a href="../../accessibility/">Accessibility</a>
+        </nav>
+      </div>
+      <nav aria-label="Footer">
+        <a href="../../">Home</a>
+        <a href="../../store/">Store Front</a>
+        <a href="../../tools/">Mobile tools</a>
+        <a href="../../skills/">AI / SI skills</a>
+        <a href="../../papers/">White papers</a>
+        <a href="../../#faq">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
